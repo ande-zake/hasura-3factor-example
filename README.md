@@ -1,3 +1,5 @@
+`this is from https://github.com/hasura/3factor-example/`
+
 # 3Factor Canonical App
 
 This is a canonical app for 3factor which showcases the three factors in detail with a reference implementation. The reference implementation is a food ordering app which has a user facing component (order-app) and an admin dashboard (analytics-app).
@@ -121,13 +123,13 @@ $ npm start
 
 We need to setup a development environment for our backend. We need to write backend logic for the following steps:
 
-1) **Validate order:** Source code: [validate-order](src/backend/validate-order)
+1) **Validate order:** Source code: [validate-order](src/backend/validate-order) : install depedencies -> ```validate-order> npm install```
 
-2) **Payment:**  Source code: [payment](src/backend/payment)
+2) **Payment:**  Source code: [payment](src/backend/payment) : install depedencies -> ```payment> npm install```
 
-3) **Restaurant approval:**  Source code: [restaurant-approval](src/backend/restaurant-approval)
+3) **Restaurant approval:**  Source code: [restaurant-approval](src/backend/restaurant-approval) : install depedencies -> ```restaurant-approval> npm install```
 
-4) **Agent assignment:** Source code: [agent-assignment](src/backend/agent-assignment)
+4) **Agent assignment:** Source code: [agent-assignment](src/backend/agent-assignment) : install depedencies -> ```agent-assignment> npm install```
 
 For this purpose, we will run a node server with each of the above functions exposed as HTTP APIs as defined in [src/backend/localDevelopment.js](src/backend/localDevelopment.js). Run the server and try these functions out:
 
@@ -169,7 +171,11 @@ Go back to the Hasura console at http://localhost:8080/console and in the `Event
 
 ![event-triggers](assets/event-triggers.png)
 
-This finishes the entire development cycle on our local machine. You can start testing the app now.
+Note that if you're running this example project on macOS or Windows, the event triggers provided in `event-triggers.json` will need to be modified in order to work. The webhooks in the event triggers are pointing to `localhost`, e.g. `http://localhost:8081/validate-order`, and Hasura which is running from the Docker container is not able to connect to the Express server (`node localDevelopment.js`) running directly on `localhost` (not in Docker).
+
+The solution is to modify the event triggers so that Hasura within the Docker container can connect to the Express server on `localhost`, which is discussed in the [Hasura Docker Network Config](https://docs.hasura.io/1.0/graphql/manual/deployment/docker/index.html#network-config) docs. On macOS, the event trigger would be updated by replacing `localhost` with `host.docker.internal`, and on Windows replacing it with `docker.for.win.localhost`, e.g. the new event trigger would point to `http://host.docker.internal:8081/validate-order`. You'll need to make this change for all event triggers.
+
+This finishes the entire development cycle on our local machine. You can start testing the app in a hosted environment now.
 
 ### Step 5: Use serverless functions
 
