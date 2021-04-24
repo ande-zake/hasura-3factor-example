@@ -141,10 +141,22 @@ $ node localDevelopment.js
 Output: server running on port 8081
 ```
 
-In a different terminal: 
+You can try if API is working with opening the other terminal : 
 
 ```bash
 $ curl -d '{"order_id": "abc-ad21-adf"}' -H 'Content-Type: application/json' localhost:8081/validate-order
+```
+
+Note : if you reach API local from docker (docker to localhost), you can use this command : 
+
+using old docker version on MAC
+```bash
+$ curl -d '{"order_id": "abc-ad21-adf"}' -H 'Content-Type: application/json' docker.for.mac.localhost:8081/validate-order 
+```
+
+using new docker version on MAC
+```bash
+$ curl -d '{"order_id": "abc-ad21-adf"}' -H 'Content-Type: application/json' host.docker.internal:8081/validate-order 
 ```
 
 ### Step 4: Setup event system
@@ -173,7 +185,7 @@ Go back to the Hasura console at http://localhost:8080/console and in the `Event
 
 Note that if you're running this example project on macOS or Windows, the event triggers provided in `event-triggers.json` will need to be modified in order to work. The webhooks in the event triggers are pointing to `localhost`, e.g. `http://localhost:8081/validate-order`, and Hasura which is running from the Docker container is not able to connect to the Express server (`node localDevelopment.js`) running directly on `localhost` (not in Docker).
 
-The solution is to modify the event triggers so that Hasura within the Docker container can connect to the Express server on `localhost`, which is discussed in the [Hasura Docker Network Config](https://docs.hasura.io/1.0/graphql/manual/deployment/docker/index.html#network-config) docs. On macOS, the event trigger would be updated by replacing `localhost` with `host.docker.internal`, and on Windows replacing it with `docker.for.win.localhost`, e.g. the new event trigger would point to `http://host.docker.internal:8081/validate-order`. You'll need to make this change for all event triggers.
+The solution is to modify the event triggers so that Hasura within the Docker container can connect to the Express server on `localhost`, which is discussed in the [Hasura Docker Network Config](https://docs.hasura.io/1.0/graphql/manual/deployment/docker/index.html#network-config) docs. On macOS, the event trigger would be updated by replacing `localhost` with `host.docker.internal` (if you use old docker version, u must replace with `docker.for.mac.localhost`), and on Windows replacing it with `docker.for.win.localhost`, e.g. the new event trigger would point to `http://host.docker.internal:8081/validate-order`. You'll need to make this change for all event triggers.
 
 This finishes the entire development cycle on our local machine. You can start testing the app in a hosted environment now.
 
