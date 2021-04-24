@@ -149,12 +149,12 @@ $ curl -d '{"order_id": "abc-ad21-adf"}' -H 'Content-Type: application/json' loc
 
 Note : if you reach API local from docker (docker to localhost), you can use this command : 
 
-using old docker version
+using old docker version on MAC
 ```bash
 $ curl -d '{"order_id": "abc-ad21-adf"}' -H 'Content-Type: application/json' docker.for.mac.localhost:8081/validate-order 
 ```
 
-using new docker version
+using new docker version on MAC
 ```bash
 $ curl -d '{"order_id": "abc-ad21-adf"}' -H 'Content-Type: application/json' host.docker.internal:8081/validate-order 
 ```
