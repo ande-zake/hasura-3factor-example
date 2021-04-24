@@ -20,6 +20,7 @@ app.post('/validate-order', async function (req, res) {
         } else {
             order = req.body;
         }
+        console.log("var order : "+JSON.stringify(order));
         var result = await validateOrder(order);
         res.json(result);
     } catch(e) {
