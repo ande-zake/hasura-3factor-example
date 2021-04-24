@@ -1,3 +1,5 @@
+`this is from https://github.com/hasura/3factor-example/`
+
 # 3Factor Canonical App
 
 This is a canonical app for 3factor which showcases the three factors in detail with a reference implementation. The reference implementation is a food ordering app which has a user facing component (order-app) and an admin dashboard (analytics-app).
@@ -121,13 +123,13 @@ $ npm start
 
 We need to setup a development environment for our backend. We need to write backend logic for the following steps:
 
-1) **Validate order:** Source code: [validate-order](src/backend/validate-order)
+1) **Validate order:** Source code: [validate-order](src/backend/validate-order) : install depedencies -> ```validate-order> npm install```
 
-2) **Payment:**  Source code: [payment](src/backend/payment)
+2) **Payment:**  Source code: [payment](src/backend/payment) : install depedencies -> ```payment> npm install```
 
-3) **Restaurant approval:**  Source code: [restaurant-approval](src/backend/restaurant-approval)
+3) **Restaurant approval:**  Source code: [restaurant-approval](src/backend/restaurant-approval) : install depedencies -> ```restaurant-approval> npm install```
 
-4) **Agent assignment:** Source code: [agent-assignment](src/backend/agent-assignment)
+4) **Agent assignment:** Source code: [agent-assignment](src/backend/agent-assignment) : install depedencies -> ```agent-assignment> npm install```
 
 For this purpose, we will run a node server with each of the above functions exposed as HTTP APIs as defined in [src/backend/localDevelopment.js](src/backend/localDevelopment.js). Run the server and try these functions out:
 
