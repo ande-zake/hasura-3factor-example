@@ -11,8 +11,10 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "cors": "^2.8.5",
     "validate-order": "file:./validate-order",
     "payment": "file:./payment",
+    "sequelize": "^5.15.0",
     "restaurant-approval": "file:./restaurant-approval",
     "agent-assignment": "file:./agent-assignment"
   }

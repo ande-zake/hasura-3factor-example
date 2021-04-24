@@ -12,9 +12,9 @@ import { HttpLink } from 'apollo-link-http';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 
-const wsurl = process.env.REACT_APP_HASURA_WEBSOCKET_URL || "ws://localhost:8080/v1alpha1/graphql";
-const httpurl = process.env.REACT_APP_HASURA_HTTP_URL || "http://localhost:8080/v1alpha1/graphql";
-const adminSecret = process.env.REACT_APP_HASURA_ADMIN_SECRET;
+const wsurl = process.env.REACT_APP_HASURA_WEBSOCKET_URL || "ws://localhost:8080/v1/graphql";
+const httpurl = process.env.REACT_APP_HASURA_HTTP_URL || "http://localhost:8080/v1/graphql";
+const adminSecret = process.env.REACT_APP_HASURA_ADMIN_SECRET || "adminpass";
 
 const wsLink = new WebSocketLink({
   uri: wsurl,

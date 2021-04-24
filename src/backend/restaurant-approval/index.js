@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-const POSTGRES_CONNECTION_STRING = process.env.POSTGRES_CONNECTION_STRING || "postgres://postgres:password@localhost:6432/postgres";
+const POSTGRES_CONNECTION_STRING = process.env.POSTGRES_CONNECTION_STRING || "postgres://postgres:postgrespassword@103.82.241.60:5432/threefactorappexample";
 
 async function restaurantApproval(order) {
     try {

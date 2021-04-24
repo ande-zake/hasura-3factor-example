@@ -1,0 +1,14 @@
+version: '3'
+services:
+  graphql-engine:
+    container_name: threefactorapp-graphql
+    #image: hasura/graphql-engine:latest
+    image: hasura/graphql-engine:v2.0.0-alpha.9
+    ports:
+    - "8080:8080"
+    env_file:
+    - ./.env
+    networks:
+      default:
+        aliases:
+        - threefactorapp.api.hasura
